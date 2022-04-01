@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 from todo_list import TodoList
 from task import Task
 
@@ -42,6 +42,12 @@ def update_task(id):
   todolist.update_task(id, task)
   # Retornar una respuesta HTTP positiva
   return "OK"
+
+
+@app.route("/assets/<path:path>.<ext>")
+def style(path, ext):
+  if ext in ['css', 'js', 'png', 'jpg', 'gif', 'svg']:
+    return send_file('assets/' + path)
 
 if __name__ == '__main__':
   app.run(debug=True)

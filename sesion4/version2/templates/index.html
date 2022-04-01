@@ -1,4 +1,10 @@
 <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sesion 4 - Ejercicio 2</title>
+
+    <link rel="stylesheet" href="/assets/style.css">
+  </head>
   <body>
     <h1>Aplicacion Todo List</h1>
     
@@ -14,7 +20,7 @@
             {{ tasks[key] }}
             <a href="/task/{{key}}/delete">x</a>
             {% if tasks[key].done == False %}
-              <button onclick="setDone('{{key}}')">Terminado</button>
+              <button class ="donebutton" onclick="setDone('{{key}}')">Terminado</button>
             {% endif %}
             
           </li>
