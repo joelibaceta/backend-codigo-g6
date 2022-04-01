@@ -1,17 +1,20 @@
 from flask import Flask, render_template, request
 
+import uuid
+
 app = Flask(__name__)
 
 todos = {}
 
 @app.route('/')
 def hello_world():
+    
     return render_template('index.html', todos=get_todos())
 
 @app.route('/add_task', methods=['POST'])
 def add_task():
     task = request.form['task']
-    add_todo(len(todos), task)
+    add_todo(task)
 
     return render_template('index.html', todos=get_todos())
 
@@ -22,8 +25,8 @@ def delete_task(id):
     return render_template('index.html', todos=get_todos())
 
 # Create a new todo
-def add_todo(id, todo):
-    todos[id] = todo
+def add_todo(todo):
+    todos[uuid.uuid4().int] = todo
 
 # Get all todos
 def get_todos():
@@ -35,6 +38,7 @@ def get_todo(id):
 
 # Delete a todo by id
 def delete_todo(id):
+    print(todos)
     del todos[id]
 
 # Update a todo by id
