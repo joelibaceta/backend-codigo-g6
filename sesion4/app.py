@@ -6,20 +6,24 @@ todos = {}
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return render_template('index.html', todos=get_todos())
 
 @app.route('/add_task', methods=['POST'])
 def add_task():
     task = request.form['task']
-    add_todo({
-        'id': len(todos),
-        'task': task,
-    })
+    add_todo(len(todos), task)
+
+    return render_template('index.html', todos=get_todos())
+
+
+@app.route('/delete_task/<int:id>')
+def delete_task(id):
+    delete_todo(id)
     return render_template('index.html', todos=get_todos())
 
 # Create a new todo
-def add_todo(todo):
-    todos[todo["id"]] = todo["task"]
+def add_todo(id, todo):
+    todos[id] = todo
 
 # Get all todos
 def get_todos():

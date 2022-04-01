@@ -12,6 +12,13 @@
         <input type="submit" value="Add Task">
       </form>
 
+      {% for key in todos %}
+        <div>
+          <span>{{ todos[key] }}</span> 
+          <span><a href="/delete_task/{{key}}">Eliminar</a></span>
+        </div>
+      {% endfor %}
+
     </div>
   </body>
 </html>
