@@ -41,13 +41,16 @@ def update_task(id):
   # Actualizar la tarea en la lista de tareas
   todolist.update_task(id, task)
   # Retornar una respuesta HTTP positiva
-  return "OK"
+  return "OK", 200
 
 
 @app.route("/assets/<path:path>.<ext>")
 def style(path, ext):
   if ext in ['css', 'js', 'png', 'jpg', 'gif', 'svg']:
     return send_file('assets/' + path)
+  else:
+    return "Not found", 404
+
 
 if __name__ == '__main__':
   app.run(debug=True)
