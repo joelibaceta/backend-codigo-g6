@@ -14,11 +14,26 @@
 
       {% for key in todos %}
         <div>
-          <span>{{ todos[key] }}</span> 
+          <span><input id="task_{{key}}" onchange="update_task('{{key}}')" value="{{todos[key]}}" /></span> 
           <span><a href="/delete_task/{{key}}">Eliminar</a></span>
         </div>
       {% endfor %}
 
     </div>
+    <script>
+      function update_task(key) {
+        input_element = document.getElementById('task_' + key);
+        new_value = input_element.value;
+        fetch('/update_task/' + key, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            'new_value': new_value
+          })
+        });
+      }
+    </script>
   </body>
 </html>

@@ -15,7 +15,6 @@ def hello_world():
 def add_task():
     task = request.form['task']
     add_todo(task)
-
     return render_template('index.html', todos=get_todos())
 
 
@@ -23,6 +22,12 @@ def add_task():
 def delete_task(id):
     delete_todo(id)
     return render_template('index.html', todos=get_todos())
+
+@app.route('/update_task/<int:id>', methods=['PUT'])
+def update_task(id):
+  task = request.json["new_value"]
+  update_todo(id, task)
+  return "ok"
 
 # Create a new todo
 def add_todo(todo):
@@ -38,7 +43,6 @@ def get_todo(id):
 
 # Delete a todo by id
 def delete_todo(id):
-    print(todos)
     del todos[id]
 
 # Update a todo by id
