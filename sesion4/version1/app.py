@@ -17,7 +17,6 @@ def add_task():
     add_todo(task)
     return render_template('index.html', todos=get_todos())
 
-
 @app.route('/delete_task/<int:id>')
 def delete_task(id):
     delete_todo(id)

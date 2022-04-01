@@ -1,0 +1,41 @@
+<html>
+  <body>
+    <h1>Aplicacion Todo List</h1>
+    
+    <div>
+      <form action="/tasks" method="POST">
+        <input type="text" name="new_task" placeholder="Nueva tarea" />
+        <input type="submit" value="Agregar" />
+      </form>
+
+      <ul>
+        {% for key in tasks %}
+          <li>
+            {{ tasks[key] }}
+            <a href="/task/{{key}}/delete">x</a>
+            {% if tasks[key].done == False %}
+              <button onclick="setDone('{{key}}')">Terminado</button>
+            {% endif %}
+            
+          </li>
+        {% endfor %}
+      </ul>
+      
+    </div>
+    <script>
+      function setDone(id) {
+        fetch('/task/' + id + '/done', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          }}).then(function(response) {
+            return response;
+          }).then(function(data) {
+            console.log(data);
+            location.reload();
+          });
+        
+      }
+    </script>
+  </body>
+</html>
