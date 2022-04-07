@@ -3,4 +3,7 @@ env1
 env2
 env3
 env4
+env5
+env6
 __pycache__
+gato_*
