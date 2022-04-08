@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Genders</h1>
+
+        <ul>
+            {% for gender in genders %}
+                <li> Gender Name > {{ gender.long_name }}  </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

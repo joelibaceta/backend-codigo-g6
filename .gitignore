@@ -5,5 +5,8 @@ env3
 env4
 env5
 env6
+venv
+.idea
+.python-version
 __pycache__
 gato_*
