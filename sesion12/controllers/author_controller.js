@@ -1,5 +1,5 @@
 
-const { Author } = require('../models')
+const { Author, Book } = require('../models')
 
 class AuthorController {
 
@@ -21,6 +21,31 @@ class AuthorController {
         Author.findAll()
             .then((result) => {
                 res.status(200).send(result)
+            })
+            .catch((err) => {
+                res.status(404).send({
+                    message: err.message
+                })
+            })
+    }
+
+    static retrieve_by_author(req, res) {
+        let pk = req.params.pk
+
+        Author.findByPk(pk, {
+            include: [
+                {
+                    model: Book,
+                    as: 'books',
+                    attributes: ['id', 'title', 'year'],
+                    through: {
+                        attributes: [],
+                    }
+                }
+            ]
+        })
+            .then((author) => {
+                res.status(200).send(author.books)
             })
             .catch((err) => {
                 res.status(404).send({

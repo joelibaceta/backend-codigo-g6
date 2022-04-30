@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { User } =require('../models')
 
+
 class UserController {
 
     static login(req, res) {
@@ -18,18 +19,21 @@ class UserController {
                 if (result) {
                     let payload = {
                         id: user.id,
-                        username: user.username
+                        username: user.username,
+                        role: user.role
                     }
                     const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '1800s'})
-                    res.send({
-                        token: token
+                    res.status(200).send({
+                        token: token,
+                        role: user.role,
+                        username: user.username
                     })
                 } else {
-                    res.send("Ups, something wrong, try again")
+                    res.status(401).send("Ups, something wrong, try again")
                 }
             })
         }).catch((err) => {
-            res.send("Ups, something wrong, try again")
+            res.status(401).send("Ups, something wrong, try again")
         })
     }
 
