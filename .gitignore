@@ -10,3 +10,7 @@ venv
 .python-version
 __pycache__
 gato_*
+env9
+node_modules
+package-lock.json
+.env

@@ -51,3 +51,6 @@ def update_todo(id, todo):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+# python application.py
