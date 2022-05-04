@@ -1,0 +1,23 @@
+[
+  {
+    "model": "commons.gender",
+    "fields": {
+      "long_name": "MALE",
+      "short_name": "M"
+    }
+  },
+  {
+    "model": "commons.gender",
+    "fields": {
+      "long_name": "FEMALE",
+      "short_name": "F"
+    }
+  },
+  {
+    "model": "commons.gender",
+    "fields": {
+      "long_name": "OTROS",
+      "short_name": "O"
+    }
+  }
+]
