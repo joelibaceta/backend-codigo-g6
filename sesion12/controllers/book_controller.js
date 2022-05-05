@@ -109,6 +109,10 @@ class BookController {
         let pk = req.params.pk
         let data = req.body
 
+        //{deleted: true}
+        //{deletedAt: }
+        //{deletedBy: req.username}
+
         Book.update(data, {
             where: {id: pk}
         })
