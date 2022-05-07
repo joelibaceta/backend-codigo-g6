@@ -21,6 +21,7 @@ class BookController {
     static findAll(req, res) {
         BookModel.find({})
             .populate('library')
+            .populate('createdBy', 'username')
             .then((results) => {
                 res.send(results)
             })
@@ -33,6 +34,10 @@ class BookController {
 
     static create(req, res) {
         let data = req.body
+
+        data['createdBy'] = req.user_id
+
+        console.log(data)
 
         BookModel.create(data).then((result) => {
             res.send(result)
