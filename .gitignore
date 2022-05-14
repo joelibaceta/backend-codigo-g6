@@ -14,3 +14,5 @@ env9
 node_modules
 package-lock.json
 .env
+todoenv
+fir-firestore-3ff16-firebase-adminsdk-yppl2-62b7189635.json

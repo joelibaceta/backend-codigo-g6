@@ -17,7 +17,7 @@ class UserController {
                 })
 
                 newUser.save((err) => {
-                    if (err) {
+                    if (err) {  
                         res.send({
                             message: err.message
                         })
